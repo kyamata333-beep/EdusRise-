@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#153e75">
+<title>EduRise by KUZRAT</title>
+<style>
+:root{--navy:#153e75;--blue:#2463eb;--sky:#eaf2ff;--ink:#152238;--muted:#66758b;--line:#dce4ef;--bg:#f4f7fb;--white:#fff;--green:#16845b;--red:#c24141;--gold:#a66b00}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#fff;font-weight:650}
+button:disabled{opacity:.5;cursor:not-allowed}
+button.secondary{background:#e8eef7;color:#183354}
+button.danger{background:#b93838}
+button.success{background:var(--green)}
+button.ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:10px;background:white;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2463eb1c}
+textarea{min-height:95px;resize:vertical}
+label{display:block;font-weight:650;margin:10px 0 5px}
+header{background:linear-gradient(135deg,#153e75,#2463eb);color:white;padding:22px 16px 18px}
+.head-inner{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#ffffff20;font-size:27px}
+header h1{margin:0;font-size:25px;letter-spacing:.2px}
+header p{margin:3px 0 0;color:#dbeafe}
+.header-chip{border:1px solid #ffffff55;border-radius:999px;padding:7px 10px;font-size:12px;white-space:nowrap}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:7px;overflow-x:auto;padding:9px max(12px,calc((100% - 1050px)/2));background:#fff;border-bottom:1px solid var(--line)}
+nav button{white-space:nowrap;padding:9px 12px;background:transparent;color:#40516a}
+nav button.active{background:var(--sky);color:var(--navy)}
+main{max-width:1050px;margin:0 auto;padding:15px}
+.page{display:none}.page.active{display:block}
+.card{background:white;border:1px solid #e5ebf3;border-radius:16px;padding:17px;margin-bottom:14px;box-shadow:0 4px 14px #19365b08}
+.card h2{margin:0 0 12px;font-size:20px;color:var(--navy)}
+.card h3{margin:8px 0;font-size:16px}
+.muted{color:var(--muted)}.small{font-size:12px}.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--sky);border-radius:13px;padding:14px}
+.stat strong{display:block;font-size:26px;color:var(--navy)}
+.stat span{font-size:12px;color:#52657f}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row>*{flex:0 0 auto}
+.row .grow{flex:1 1 180px}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.notice{padding:11px 13px;border-radius:10px;background:#fff8e6;color:#79530b;font-size:13px}
+.success-note{padding:11px 13px;border-radius:10px;background:#e9f8f0;color:#166442;font-size:13px}
+.question-item{border-bottom:1px solid var(--line);padding:13px 0}
+.question-item:last-child{border-bottom:0}
+.q-title{font-weight:700}
+.pill{display:inline-block;padding:3px 8px;border-radius:999px;background:#edf2fa;color:#40516a;font-size:11px;margin:2px}
+.option-line{display:flex;gap:8px;align-items:flex-start;background:#f5f8fc;padding:9px;border-radius:9px;margin:7px 0;font-weight:400}
+.option-line input{width:auto;margin:4px 0 0}
+.feedback{padding:10px;border-radius:9px;margin-top:8px}
+.correct{background:#e7f7ed;color:#166442}.wrong{background:#fff0f0;color:#9f2525}
+.progress{height:9px;background:#e5ebf3;border-radius:999px;overflow:hidden}
+.progress>div{height:100%;background:var(--blue);width:0;transition:width .2s}
+#pad{display:block;width:100%;height:270px;border:2px solid var(--line);border-radius:12px;background:white;touch-action:none}
+footer{text-align:center;padding:25px 15px;color:var(--muted);font-size:12px}
+.empty{text-align:center;padding:20px;color:var(--muted)}
+summary{cursor:pointer;font-weight:650;color:var(--blue)}
+kbd{background:#eef2f7;border:1px solid #d8e0eb;border-radius:5px;padding:2px 5px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}.two-col .card{height:fit-content}}
+@media(max-width:480px){header h1{font-size:21px}.header-chip{display:none}main{padding:10px}.card{padding:14px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.stat strong{font-size:23px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="head-inner">
+  <div class="brand"><div class="logo">📈</div><div><h1>EduRise</h1><p>by KUZRAT · Learn • Practice • Rise</p></div></div>
+  <div class="header-chip">PERSONAL STUDY SPACE</div>
+ </div>
+</header>
+<nav id="mainNav">
+ <button class="active" data-page="home">🏠 Home</button>
+ <button data-page="profile">👤 Profile</button>
+ <button data-page="account">☁️ Account & Sync</button>
+ <button data-page="bank">📚 Question Bank</button>
+ <button data-page="examhub">🎓 Exam Hub</button>
+ <button data-page="importtools">📷 OCR + PDF</button>
+ <button data-page="ai-check">🤖 AI Answer Check</button>
+ <button data-page="test">⏱️ Practice Test</button>
+ <button data-page="padpage">✍️ Writing Pad</button>
+ <button data-page="progress">📊 Progress</button>
+ <button data-page="backup">💾 Backup</button>
+ <button data-page="settings">⚙️ Settings</button>
+</nav>
+<main>
+<section id="home" class="page active">
+ <div class="card">
+  <h2 id="welcomeTitle">Welcome to EduRise! 👋</h2>
+  <p class="muted">Your personal place to organize questions, practice tests, and track learning.</p>
+  <div class="grid">
+   <div class="stat"><strong id="statQuestions">0</strong><span>Saved questions</span></div>
+   <div class="stat"><strong id="statTests">0</strong><span>Tests completed</span></div>
+   <div class="stat"><strong id="statAverage">—</strong><span>Average score</span></div>
+   <div class="stat"><strong id="statStreak">0</strong><span>Study sessions</span></div>
+  </div>
+ </div>
+ <div class="two-col">
+  <div class="card">
+   <h2>🚀 Quick start</h2>
+   <div class="row"><button data-go="profile">Set profile</button><button class="secondary" data-go="bank">Add a question</button></div>
+   <hr><div class="row"><button class="success" data-go="test">Start a test</button><button class="secondary" data-go="padpage">Open writing pad</button></div>
+  </div>
+  <div class="card">
+   <h2>👤 Study profile</h2>
+   <p id="profileSummary" class="muted">Set your name, board and class in Profile.</p>
+   <div class="notice">Your information is saved in this browser on this device. It is not automatically synced to another phone.</div>
+  </div>
+ </div>
+ <div class="card">
+  <h2>📈 Recent activity</h2><div id="recentActivity" class="empty">Your completed tests will appear here.</div>
+ </div>
+ <div class="card">
+  <h2>🧭 Planned learning tools</h2>
+  <div class="grid3">
+   <div><strong>📷 Photo OCR</strong><p class="small muted">Available in Part 2</p></div>
+   <div><strong>📄 PDF import</strong><p class="small muted">Available in Part 2</p></div>
+   <div><strong>🤖 AI checking</strong><p class="small muted">Part 3: connect a compatible AI backend in Settings</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="profile" class="page">
+ <div class="card">
+  <h2>👤 Your study profile</h2>
+  <p class="muted">Choose your study details. You can change them anytime.</p>
+  <label for="studentName">Your name</label><input id="studentName" maxlength="80" placeholder="Enter your name">
+  <div class="grid">
+   <div><label for="board">Board / curriculum</label><select id="board"><option>CBSE</option><option>RBSE</option><option>ICSE</option><option>International</option><option>Other</option></select></div>
+   <div><label for="studentClass">Class / exam</label><select id="studentClass"><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option selected>Class 10</option><option>Class 11</option><option>Class 12</option><option>JEE</option><option>NEET</option><option>UPSC</option></select></div>
+   <div><label for="language">Preferred language</label><select id="language"><option>English</option><option>Hindi</option><option>Hindi + English</option></select></div>
+   <div><label for="studyGoal">Daily study goal (minutes)</label><input id="studyGoal" type="number" min="5" max="1440" value="60"></div>
+  </div>
+  <button id="saveProfileBtn">Save profile</button><span id="profileStatus" class="small muted" aria-live="polite"></span>
+ </div>
+</section>
+
+<section id="bank" class="page">
+ <div class="card">
+  <h2>📚 Add a question</h2>
+  <p class="muted">Create your own questions and keep their answer keys separate until you reveal them.</p>
+  <div class="grid">
+   <div><label for="subject">Subject</label><select id="subject"><option>Science</option><option>Maths</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Studies</option><option>Computer</option><option>Other</option></select></div>
+   <div><label for="qtype">Question type</label><select id="qtype"><option value="mcq">MCQ</option><option value="written">Written answer</option></select></div>
+   <div><label for="qBoard">Board / exam</label><select id="qBoard"><option>Any</option><option>CBSE</option><option>RBSE</option><option>ICSE</option><option>International</option><option>JEE</option><option>NEET</option><option>UPSC</option></select></div>
+   <div><label for="qClass">Class / level</label><select id="qClass"><option>Any</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>JEE</option><option>NEET</option><option>UPSC</option></select></div>
+   <div><label for="qSetNumber">Practice set number</label><input id="qSetNumber" type="number" min="1" max="9999" value="1" placeholder="e.g. 1"></div>
+  </div>
+  <label for="questionText">Question</label><textarea id="questionText" maxlength="5000" placeholder="Write the question here..."></textarea>
+  <div id="optionsBox">
+   <label>Option A</label><input id="optA" maxlength="1000" placeholder="Option A">
+   <label>Option B</label><input id="optB" maxlength="1000" placeholder="Option B">
+   <label>Option C</label><input id="optC" maxlength="1000" placeholder="Option C">
+   <label>Option D</label><input id="optD" maxlength="1000" placeholder="Option D">
+   <label for="correct">Correct option</label><select id="correct"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select>
+  </div>
+  <label for="answerText">Answer / marking points</label><textarea id="answerText" maxlength="5000" placeholder="Write the correct answer or marking points..."></textarea>
+  <div class="row"><button id="saveQuestionBtn">Save question</button><button class="secondary" id="clearQuestionForm">Clear form</button></div>
+  <p class="small muted">Tip: For written answers, fill the answer field with the key points you expect.</p>
+ </div>
+ <div class="card">
+  <h2>🗂️ Saved questions</h2>
+  <div class="grid">
+   <div><label for="filterSubject">Subject</label><select id="filterSubject"><option value="All">All subjects</option><option>Science</option><option>Maths</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Studies</option><option>Computer</option><option>Other</option></select></div>
+   <div><label for="searchQuestions">Search questions</label><input id="searchQuestions" placeholder="Search text..." maxlength="100"></div>
+   <div><label for="filterType">Type</label><select id="filterType"><option value="All">All types</option><option value="mcq">MCQ</option><option value="written">Written</option></select></div>
+   <div><label for="filterBoard">Board / exam</label><select id="filterBoard"><option value="All">All</option><option>CBSE</option><option>RBSE</option><option>ICSE</option><option>International</option><option>JEE</option><option>NEET</option><option>UPSC</option><option>Any</option></select></div>
+   <div><label for="filterSetNumber">Practice set</label><select id="filterSetNumber"><option value="All">All sets</option></select></div>
+  </div>
+  <div id="questionList"></div>
+ </div>
+</section>
+
+
+<section id="importtools" class="page">
+ <div class="card">
+  <h2>📷 Photo to text (OCR)</h2>
+  <p class="muted">Choose a photo of printed or handwritten text. Recognition quality depends on image clarity and handwriting. OCR runs in your browser using an online-loaded library.</p>
+  <label for="ocrImage">Choose a photo</label><input id="ocrImage" type="file" accept="image/*">
+  <div class="grid">
+   <div><label for="ocrLanguage">Text language</label><select id="ocrLanguage"><option value="eng">English</option><option value="hin">Hindi</option><option value="eng+hin" selected>Hindi + English</option></select></div>
+   <div><label for="ocrMode">Image handling</label><select id="ocrMode"><option value="normal">Normal photo</option><option value="document">Document / high contrast</option></select></div>
+  </div>
+  <div class="row"><button id="runOcrBtn">Read photo</button><button class="secondary" id="clearOcrBtn">Clear</button></div>
+  <p id="ocrStatus" class="small muted" aria-live="polite">OCR engine loads when you start recognition. Internet is required the first time.</p>
+  <label for="ocrOutput">Recognized text</label><textarea id="ocrOutput" style="min-height:180px" placeholder="Recognized text will appear here..."></textarea>
+  <div class="row"><button id="useOcrQuestionBtn">Use as question</button><button class="secondary" id="copyOcrBtn">Copy text</button></div>
+ </div>
+ <div class="card">
+  <h2>📄 Import PDF</h2>
+  <p class="muted">Text-based PDFs can be extracted directly. Scanned PDFs can be rendered page-by-page and passed through OCR. PDF processing needs an internet connection to load PDF.js and Tesseract.js.</p>
+  <label for="pdfFile">Choose PDF file</label><input id="pdfFile" type="file" accept="application/pdf,.pdf">
+  <div class="grid">
+   <div><label for="pdfPageNumber">Page number for scanned-page OCR</label><input id="pdfPageNumber" type="number" min="1" value="1"></div>
+   <div><label for="pdfScale">Scan quality</label><select id="pdfScale"><option value="1.5">Standard</option><option value="2" selected>High</option><option value="2.5">Very high (slower)</option></select></div>
+  </div>
+  <div class="row"><button id="extractPdfBtn">Extract PDF text</button><button class="secondary" id="ocrPdfPageBtn">OCR scanned page</button></div>
+  <p id="pdfStatus" class="small muted" aria-live="polite">No PDF selected.</p>
+  <canvas id="pdfCanvas" class="hidden" style="max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px"></canvas>
+  <label for="pdfOutput">Extracted PDF text</label><textarea id="pdfOutput" style="min-height:200px" placeholder="PDF text will appear here..."></textarea>
+  <div class="row"><button id="usePdfQuestionBtn">Use as question</button><button class="secondary" id="copyPdfBtn">Copy text</button></div>
+ </div>
+ <div class="notice">Privacy note: selected files are processed in this browser. The OCR/PDF libraries and language data may download from a CDN. Avoid using sensitive documents on a shared device.</div>
+</section>
+
+<section id="ai-check" class="page">
+ <div class="card">
+  <h2>🤖 AI answer checking</h2>
+  <p class="muted">Apne answer ko marking points ke saath check karein. AI service endpoint configure hona zaroori hai; sirf HTML se AI grading apne-aap nahi chalti. API key ko is HTML file mein mat daalein.</p>
+  <label for="aiQuestion">Question</label><textarea id="aiQuestion" maxlength="5000" placeholder="Question yahan likhein..."></textarea>
+  <label for="aiAnswerKey">Correct answer / marking scheme</label><textarea id="aiAnswerKey" maxlength="5000" placeholder="Expected answer ya marking points..."></textarea>
+  <label for="aiStudentAnswer">Student answer</label><textarea id="aiStudentAnswer" maxlength="10000" placeholder="Apna likha hua answer yahan paste karein..."></textarea>
+  <div class="grid">
+   <div><label for="aiSubject">Subject</label><select id="aiSubject"><option>Science</option><option>Maths</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Studies</option><option>Other</option></select></div>
+   <div><label for="aiMaxMarks">Maximum marks</label><input id="aiMaxMarks" type="number" min="1" max="100" value="5"></div>
+   <div><label for="aiLanguage">Feedback language</label><select id="aiLanguage"><option>Hindi</option><option>English</option><option>Hindi + English</option></select></div>
+  </div>
+  <div class="row"><button id="runAiCheckBtn">Check answer</button><button class="secondary" id="clearAiCheckBtn">Clear</button></div>
+  <p id="aiCheckStatus" class="small muted" aria-live="polite">AI checking needs a compatible backend URL in Settings.</p>
+  <div id="aiCheckResult"></div>
+ </div>
+ <div class="card">
+  <h2>⚙️ Connect AI checking</h2>
+  <p class="muted">Add a backend endpoint you control or trust. It must accept a POST JSON request and return JSON with <code>marks</code> and <code>feedback</code>. The endpoint should keep its AI provider API key on the server, not in this app.</p>
+  <label for="aiEndpointUrl">AI backend endpoint URL</label><input id="aiEndpointUrl" type="url" placeholder="https://your-server.example/check-answer">
+  <button id="saveAiEndpointBtn">Save endpoint</button> <span id="aiEndpointStatus" class="small muted"></span>
+  <p class="small muted">Expected request fields: question, answerKey, studentAnswer, subject, maxMarks, language. Expected response: {"marks": 4, "feedback": "...", "mistakes": ["..."], "suggestedAnswer": "..."}. Server/CORS/network settings may be required.</p>
+ </div>
+</section>
+
+<section id="test" class="page">
+ <div class="card">
+  <h2>⏱️ Practice test</h2>
+  <p class="muted">Make a test from your saved questions. MCQs are auto-marked; written answers can be reviewed manually.</p>
+  <div class="grid">
+   <div><label for="testSubject">Subject</label><select id="testSubject"><option value="All">All subjects</option><option>Science</option><option>Maths</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Studies</option><option>Computer</option><option>Other</option></select></div>
+   <div><label for="testType">Question type</label><select id="testType"><option value="All">All types</option><option value="mcq">MCQ only</option><option value="written">Written only</option></select></div>
+   <div><label for="testSetNumber">Practice set number</label><select id="testSetNumber"><option value="All">All sets</option></select></div>
+   <div><label for="testCount">Number of questions</label><input id="testCount" type="number" min="1" max="100" value="10"></div>
+   <div><label for="duration">Duration (minutes)</label><input id="duration" type="number" min="1" max="600" value="195"><small class="muted">Default: 3 hours 15 minutes (195 minutes)</small></div>
+   <div><label for="negative">Negative marks per wrong MCQ</label><input id="negative" type="number" min="0" max="5" step="0.25" value="0"></div>
+   <div><label for="marksPerQuestion">Marks per question</label><input id="marksPerQuestion" type="number" min="1" max="20" value="1"></div>
+  </div>
+  <div class="row"><button id="startTestBtn">Start test</button><button class="secondary" id="cancelTestBtn" disabled>Cancel test</button></div>
+  <div id="testArea" class="hidden">
+   <hr><div class="row" style="justify-content:space-between"><strong id="testCounter">Question 1</strong><strong id="timerDisplay" aria-live="polite">03:15:00</strong></div>
+   <div class="progress"><div id="testProgress"></div></div>
+   <form id="testForm"><div id="testQuestions"></div><div class="row"><button type="button" class="secondary" id="prevQuestionBtn">Previous</button><button type="button" id="nextQuestionBtn">Next</button><button type="button" class="success hidden" id="submitTestBtn">Submit test</button></div></form>
+  </div>
+  <div id="testResult" aria-live="polite"></div>
+ </div>
+ <div class="card"><h2>🧾 Past tests</h2><div id="testHistory"></div></div>
+</section>
+
+<section id="padpage" class="page">
+ <div class="card">
+  <h2>✍️ Digital writing pad</h2>
+  <p class="muted">Write or draw with your finger or stylus. This is a simple drawing pad, not handwriting recognition.</p>
+  <div class="row"><div class="grow"><label for="penColor">Pen colour</label><select id="penColor"><option value="#172033">Black</option><option value="#2463eb">Blue</option><option value="#c24141">Red</option><option value="#16845b">Green</option></select></div><div class="grow"><label for="penSize">Pen thickness</label><select id="penSize"><option value="2">Fine</option><option value="4" selected>Normal</option><option value="7">Thick</option><option value="11">Extra thick</option></select></div></div>
+  <canvas id="pad" aria-label="Digital writing canvas"></canvas>
+  <div class="row" style="margin-top:10px"><button id="clearPadBtn" class="secondary">Clear pad</button><button id="undoPadBtn" class="secondary">Undo stroke</button><button id="savePadBtn">Save drawing</button></div>
+  <p id="padStatus" class="small muted"></p>
+ </div>
+</section>
+
+<section id="progress" class="page">
+ <div class="card">
+  <h2>📊 Your progress</h2>
+  <div class="grid">
+   <div class="stat"><strong id="progressTests">0</strong><span>Tests completed</span></div>
+   <div class="stat"><strong id="progressAvg">—</strong><span>Average percentage</span></div>
+   <div class="stat"><strong id="progressBest">—</strong><span>Best percentage</span></div>
+   <div class="stat"><strong id="progressWritten">0</strong><span>Written answers attempted</span></div>
+  </div>
+ </div>
+ <div class="card"><h2>Subject summary</h2><div id="subjectProgress"></div></div>
+ <div class="card"><h2>Recent results</h2><div id="progressHistory"></div></div>
+</section>
+
+<section id="backup" class="page">
+ <div class="card">
+  <h2>💾 Backup & restore</h2>
+  <p>Download your profile, saved questions and test history as a JSON file. Keep a copy somewhere safe.</p>
+  <button id="exportBtn">Download JSON backup</button>
+  <hr>
+  <label for="restoreFile">Choose a JSON backup file</label><input id="restoreFile" type="file" accept=".json,application/json">
+  <div class="row"><button id="importBtn">Restore backup</button><button id="clearAllBtn" class="danger">Delete all local data</button></div>
+  <p class="notice">Restore replaces the current app data. Export a backup first if you want to keep the current data. Deleting app/browser data can also remove saved information.</p>
+  <div id="backupStatus" aria-live="polite" class="small muted"></div>
+ </div>
+</section>
+
+<section id="account" class="page">
+ <div class="card">
+  <h2>☁️ Account & Cloud Sync</h2>
+  <p>Part 4 adds account and cloud-sync connection support. Enter a backend URL that you control or trust. An actual server is required for online registration and syncing.</p>
+  <div class="notice"><strong>Privacy:</strong> Never enter your main email password here. Use an account password for the EduRise service only. Use HTTPS for any real account server.</div>
+  <label for="accountApiBase">Backend base URL</label><input id="accountApiBase" type="url" placeholder="https://your-server.example.com">
+  <button id="saveAccountApiBtn">Save backend URL</button><span id="accountApiStatus" class="small muted" aria-live="polite"></span>
+  <hr>
+  <div class="two-col">
+   <div class="card"><h3>🆕 Create account</h3>
+    <label for="registerName">Your name</label><input id="registerName" autocomplete="name" placeholder="Name">
+    <label for="registerEmail">Email</label><input id="registerEmail" type="email" autocomplete="email" placeholder="you@example.com">
+    <label for="registerPassword">New EduRise password</label><input id="registerPassword" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters">
+    <button id="registerBtn">Register</button>
+   </div>
+   <div class="card"><h3>🔐 Sign in</h3>
+    <label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com">
+    <label for="loginPassword">EduRise password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your EduRise password">
+    <button id="loginBtn">Sign in</button>
+   </div>
+  </div>
+  <hr><h3>Current account</h3><p id="accountStatus" aria-live="polite" class="muted">Not signed in.</p>
+  <div class="row"><button id="syncNowBtn">Sync now</button><button id="signOutBtn" class="secondary">Sign out</button></div>
+  <p id="syncStatus" class="small muted" aria-live="polite">Sync has not run yet.</p>
+  <details><summary>Backend API requirements</summary><p class="small">The server must implement POST <code>/auth/register</code> and POST <code>/auth/login</code> with JSON {"name":"...","email":"...","password":"..."} (login uses email/password) and return {"token":"..."}. It must also implement GET and PUT <code>/data</code> with a Bearer token. GET should return {"data":{...}} or the data object; PUT accepts the EduRise data object. Configure HTTPS, password hashing, authorization, CORS, and private per-user storage on the server.</p></details>
+ </div>
+</section>
+
+<section id="settings" class="page">
+ <div class="card">
+  <h2>⚙️ Settings</h2>
+  <label for="appearance">Appearance</label><select id="appearance"><option value="light">Light mode</option><option value="dark">Dark mode</option></select>
+  <label for="confirmDelete">Confirm before deleting questions</label><select id="confirmDelete"><option value="yes">Yes, ask me</option><option value="no">No confirmation</option></select>
+  <button id="saveSettingsBtn">Save settings</button>
+  <hr><h3>About this version</h3>
+  <p class="muted">EduRise by KUZRAT · Part 5 · Exam Hub and study organizer.</p>
+  <p class="small muted">Part 4 adds an account and cloud-sync connection interface. Real online accounts and sync require a compatible backend server. AI grading also requires a compatible AI backend; no server is bundled in this HTML file.</p>
+  <button class="secondary" id="showPrivacyBtn">Show data information</button>
+  <div id="privacyInfo" class="hidden"><p>Your profile, questions and test history are stored in local browser storage on this device. Cloud sync only runs after you configure and sign in to a compatible server. Anyone with access to this browser profile may be able to see local data. Use the backup feature to export a copy.</p></div>
+ </div>
+</section>
+
+<section id="examhub" class="page">
+ <div class="card">
+  <h2>🎓 Exam Hub — Part 5</h2>
+  <p class="muted">Choose your exam to organize your own questions by exam, subject, topic and practice set. This is an organizer, not a preloaded official question bank.</p>
+  <div class="grid3" id="examCards">
+   <button type="button" class="secondary exam-choice" data-exam="School">🏫 School / Board</button>
+   <button type="button" class="secondary exam-choice" data-exam="JEE">🧮 JEE</button>
+   <button type="button" class="secondary exam-choice" data-exam="NEET">🧬 NEET</button>
+   <button type="button" class="secondary exam-choice" data-exam="UPSC">🇮🇳 UPSC</button>
+   <button type="button" class="secondary exam-choice" data-exam="CUET">🎓 CUET</button>
+   <button type="button" class="secondary exam-choice" data-exam="Other">📘 Other exam</button>
+  </div>
+  <label for="hubExam">Selected exam</label><select id="hubExam"><option>School</option><option>JEE</option><option>NEET</option><option>UPSC</option><option>CUET</option><option>Other</option></select>
+  <label for="hubSubject">Subject</label><select id="hubSubject"><option>Science</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>History</option><option>Geography</option><option>Polity</option><option>Economics</option><option>English</option><option>Reasoning</option><option>General Knowledge</option><option>Other</option></select>
+  <label for="hubTopic">Chapter / Topic</label><input id="hubTopic" placeholder="e.g. Chemical Bonding, Trigonometry, Constitution">
+  <label for="hubSet">Practice set number</label><input id="hubSet" type="number" min="1" max="9999" value="1">
+  <div class="row"><button id="hubGoBank">Open Question Bank with these choices</button><button id="hubGoTest" class="secondary">Go to Practice Test</button></div>
+  <p id="hubStatus" class="small muted" aria-live="polite">Choose an exam and subject to organize your practice.</p>
+ </div>
+ <div class="card">
+  <h3>📌 Suggested subject groups</h3>
+  <div class="two-col">
+   <div><strong>JEE</strong><p class="muted small">Physics · Chemistry · Mathematics</p></div>
+   <div><strong>NEET</strong><p class="muted small">Physics · Chemistry · Biology</p></div>
+   <div><strong>UPSC</strong><p class="muted small">History · Geography · Polity · Economy · Environment · Current Affairs</p></div>
+   <div><strong>School / Board</strong><p class="muted small">Choose class, board and subject in the Question Bank.</p></div>
+   <div><strong>CUET</strong><p class="muted small">Language · Domain Subjects · General Test</p></div>
+   <div><strong>Other exams</strong><p class="muted small">Use your own subject and topic labels.</p></div>
+  </div>
+  <p class="notice">Important: This page provides exam categories and organization. It does not include a complete verified JEE, NEET, UPSC or board question database. Add questions yourself or import content you have permission to use.</p>
+ </div>
+</section>
+
+</main>
+<footer>EduRise 📈 by KUZRAT · Part 5 · Keep learning, keep rising.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+(function(){
+'use strict';
+const STORAGE_KEY='edurise_kuzrat_v1';
+const DEFAULT_DATA={profile:{name:'',board:'CBSE',studentClass:'Class 10',language:'English',studyGoal:60},questions:[],tests:[],settings:{appearance:'light',confirmDelete:'yes',aiEndpointUrl:''},sessionCount:0};
+let data=clone(DEFAULT_DATA);
+let activeTest=null;
+let timerHandle=null;
+let remainingSeconds=0;
+let currentQuestionIndex=0;
+let padCtx=null;
+let padStrokes=[];
+let currentStroke=null;
+let padWidth=0,padHeight=0;
+
+function clone(x){return JSON.parse(JSON.stringify(x));}
+function $(id){return document.getElementById(id);}
+function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function safeText(s){return String(s==null?'':s);}
+function makeId(){return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);}
+function setStatus(id,msg){const el=$(id);if(el)el.textContent=msg;}
+function persist(){
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+ catch(err){alert('Could not save data in this browser. Please export a backup and free some storage space.');}
+ updateDashboard();
+}
+function load(){
+ try{
+  const raw=localStorage.getItem(STORAGE_KEY);
+  if(raw){
+   const parsed=JSON.parse(raw);
+   if(parsed&&typeof parsed==='object'){
+    data=Object.assign(clone(DEFAULT_DATA),parsed);
+    data.profile=Object.assign({},DEFAULT_DATA.profile,parsed.profile||{});
+    data.settings=Object.assign({},DEFAULT_DATA.settings,parsed.settings||{});
+    data.questions=Array.isArray(parsed.questions)?parsed.questions:[];
+    data.tests=Array.isArray(parsed.tests)?parsed.tests:[];
+    data.sessionCount=Number(parsed.sessionCount)||0;
+   }
+  }
+ }catch(e){console.warn('Could not load saved data',e);}
+}
+function navigate(page){
+ document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===page));
+ document.querySelectorAll('#mainNav button').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+ if(page==='account')renderAccount();
+ if(page==='bank')renderQuestions();
+ if(page==='test')renderTestHistory();
+ if(page==='progress')renderProgress();
+ if(page==='home')updateDashboard();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#mainNav button').forEach(btn=>btn.addEventListener('click',()=>navigate(btn.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>navigate(btn.dataset.go)));
+
+function saveProfile(){
+ const goal=Math.max(5,Math.min(1440,Number($('studyGoal').value)||60));
+ data.profile={name:$('studentName').value.trim(),board:$('board').value,studentClass:$('studentClass').value,language:$('language').value,studyGoal:goal};
+ persist();renderProfile();setStatus('profileStatus',' Saved ✓');
+}
+function renderProfile(){
+ const p=data.profile;
+ $('studentName').value=p.name||'';
+ $('board').value=p.board||'CBSE';
+ $('studentClass').value=p.studentClass||'Class 10';
+ $('language').value=p.language||'English';
+ $('studyGoal').value=p.studyGoal||60;
+ $('profileSummary').textContent=p.name?[p.name,p.board,p.studentClass,p.language].filter(Boolean).join(' · '):'Set your name, board and class in Profile.';
+ $('welcomeTitle').textContent=p.name?'Welcome back, '+p.name+'! 👋':'Welcome to EduRise! 👋';
+}
+$('saveProfileBtn').addEventListener('click',saveProfile);
+
+function toggleQuestionType(){
+ $('optionsBox').classList.toggle('hidden',$('qtype').value!=='mcq');
+}
+$('qtype').addEventListener('change',toggleQuestionType);
+function clearQuestionForm(){
+ ['questionText','optA','optB','optC','optD','answerText'].forEach(id=>$(id).value='');$('qSetNumber').value='1';
+ $('qtype').value='mcq';$('subject').value='Science';$('qBoard').value='Any';$('qClass').value='Any';$('correct').value='0';
+ toggleQuestionType();
+}
+$('clearQuestionForm').addEventListener('click',clearQuestionForm);
+function addQuestion(){
+ const question=$('questionText').value.trim();
+ if(!question){alert('Please enter a question first.');$('questionText').focus();return;}
+ const type=$('qtype').value;
+ const item={id:makeId(),subject:$('subject').value,type,board:$('qBoard').value,level:$('qClass').value,practiceSet:Math.max(1,Math.floor(Number($('qSetNumber').value)||1)),question,answer:$('answerText').value.trim(),created:new Date().toISOString()};
+ if(type==='mcq'){
+  item.options=[$('optA').value.trim(),$('optB').value.trim(),$('optC').value.trim(),$('optD').value.trim()];
+  item.correct=Number($('correct').value);
+  if(item.options.some(x=>!x)){alert('Please fill all four options for an MCQ.');return;}
+ }
+ data.questions.push(item);persist();renderQuestions();clearQuestionForm();
+ alert('Question saved successfully.');
+}
+$('saveQuestionBtn').addEventListener('click',addQuestion);
+['filterSubject','filterType','filterBoard','filterSetNumber'].forEach(id=>$(id).addEventListener('change',renderQuestions));
+$('searchQuestions').addEventListener('input',renderQuestions);
+function renderQuestions(){
+ const host=$('questionList');if(!host)return;
+ refreshSetDropdowns();
+ const subj=$('filterSubject').value,type=$('filterType').value,board=$('filterBoard').value,setNo=$('filterSetNumber').value,query=$('searchQuestions').value.trim().toLowerCase();
+ const qs=data.questions.filter(q=>(subj==='All'||q.subject===subj)&&(type==='All'||q.type===type)&&(board==='All'||q.board===board)&&(setNo==='All'||String(q.practiceSet||1)===setNo)&&(!query||(q.question+' '+(q.answer||'')+' '+q.subject).toLowerCase().includes(query)));
+ host.innerHTML='';
+ if(!qs.length){host.innerHTML='<div class="empty">No matching questions yet. Add your first question above.</div>';return;}
+ const count=document.createElement('p');count.className='small muted';count.textContent=qs.length+' question(s)';host.appendChild(count);
+ qs.slice().reverse().forEach(q=>{
+  const item=document.createElement('article');item.className='question-item';
+  const title=document.createElement('div');title.className='q-title';title.textContent=q.question;item.appendChild(title);
+  const tags=document.createElement('div');tags.innerHTML='<span class="pill">'+escapeHtml(q.subject)+'</span><span class="pill">Set '+escapeHtml(q.practiceSet||1)+'</span><span class="pill">'+escapeHtml((q.type||'written').toUpperCase())+'</span><span class="pill">'+escapeHtml(q.board||'Any')+'</span><span class="pill">'+escapeHtml(q.level||'Any')+'</span>';item.appendChild(tags);
+  if(q.type==='mcq'){
+   const ol=document.createElement('ol');
+   (q.options||[]).forEach((o,i)=>{const li=document.createElement('li');li.textContent=String.fromCharCode(65+i)+'. '+o;ol.appendChild(li);});
+   item.appendChild(ol);
+  }
+  const details=document.createElement('details');details.style.margin='8px 0';
+  const summary=document.createElement('summary');summary.textContent='Reveal answer key';details.appendChild(summary);
+  const answer=document.createElement('p');answer.textContent=q.type==='mcq'?((q.options||[])[q.correct]||'No answer selected'):q.answer||'No answer key saved.';details.appendChild(answer);item.appendChild(details);
+  const actions=document.createElement('div');actions.className='row';
+  const edit=document.createElement('button');edit.className='secondary';edit.textContent='Edit';edit.addEventListener('click',()=>editQuestion(q.id));
+  const del=document.createElement('button');del.className='danger';del.textContent='Delete';del.addEventListener('click',()=>deleteQuestion(q.id));
+  actions.append(edit,del);item.appendChild(actions);host.appendChild(item);
+ });
+}
+function editQuestion(id){
+ const q=data.questions.find(x=>x.id===id);if(!q)return;
+ $('subject').value=q.subject||'Science';$('qtype').value=q.type||'written';$('qBoard').value=q.board||'Any';$('qClass').value=q.level||'Any';
+ $('questionText').value=q.question||'';$('answerText').value=q.answer||'';$('qSetNumber').value=String(q.practiceSet||1);
+ if(q.type==='mcq'){['optA','optB','optC','optD'].forEach((id,i)=>$(id).value=(q.options||[])[i]||'');$('correct').value=String(q.correct||0);}
+ const saveBtn=$('saveQuestionBtn');saveBtn.textContent='Update question';saveBtn.onclick=function(){
+  const question=$('questionText').value.trim();if(!question){alert('Question cannot be empty.');return;}
+  q.subject=$('subject').value;q.type=$('qtype').value;q.board=$('qBoard').value;q.level=$('qClass').value;q.practiceSet=Math.max(1,Math.floor(Number($('qSetNumber').value)||1));q.question=question;q.answer=$('answerText').value.trim();
+  if(q.type==='mcq'){q.options=[$('optA').value.trim(),$('optB').value.trim(),$('optC').value.trim(),$('optD').value.trim()];if(q.options.some(x=>!x)){alert('Fill all four options.');return;}q.correct=Number($('correct').value);}else{delete q.options;delete q.correct;}
+  persist();renderQuestions();clearQuestionForm();saveBtn.textContent='Save question';saveBtn.onclick=addQuestion;alert('Question updated.');
+ };
+ navigate('bank');$('questionText').focus();
+}
+function deleteQuestion(id){
+ if(data.settings.confirmDelete!=='no'&&!confirm('Delete this question?'))return;
+ data.questions=data.questions.filter(q=>q.id!==id);persist();renderQuestions();
+}
+
+function refreshSetDropdowns(){
+ const setValues=[...new Set(data.questions.map(q=>String(q.practiceSet||1)))].sort((a,b)=>Number(a)-Number(b));
+ [['filterSetNumber','All sets'],['testSetNumber','All sets']].forEach(([id,allLabel])=>{
+  const el=$(id);if(!el)return;const previous=el.value||'All';el.innerHTML='';const all=document.createElement('option');all.value='All';all.textContent=allLabel;el.appendChild(all);
+  setValues.forEach(v=>{const opt=document.createElement('option');opt.value=v;opt.textContent='Set '+v;el.appendChild(opt);});
+  el.value=[...el.options].some(o=>o.value===previous)?previous:'All';
+ });
+}
+
+function startTest(){
+ if(activeTest){if(!confirm('Start a new test and discard the current attempt?'))return;stopTimer();}
+ refreshSetDropdowns();
+ let pool=data.questions.filter(q=>($('testSubject').value==='All'||q.subject===$('testSubject').value)&&($('testType').value==='All'||q.type===$('testType').value)&&($('testSetNumber').value==='All'||String(q.practiceSet||1)===$('testSetNumber').value));
+ if(!pool.length){alert('No questions match this test. Add questions in Question Bank first.');return;}
+ const count=Math.max(1,Math.min(100,Number($('testCount').value)||10));
+ pool=shuffle(pool).slice(0,count);
+ const duration=Math.max(1,Math.min(600,Number($('duration').value)||195));
+ activeTest={id:makeId(),startedAt:new Date().toISOString(),practiceSet:$('testSetNumber').value,questions:pool.map(q=>({sourceId:q.id,subject:q.subject,practiceSet:q.practiceSet||1,type:q.type,question:q.question,options:q.options||[],correct:q.correct,answerKey:q.answer||'',response:q.type==='mcq'?'':null,manualAnswer:'',reviewed:false})),duration,negative:Math.max(0,Number($('negative').value)||0),marksPerQuestion:Math.max(1,Number($('marksPerQuestion').value)||1)};
+ currentQuestionIndex=0;remainingSeconds=duration*60;
+ $('testArea').classList.remove('hidden');$('testResult').innerHTML='';$('cancelTestBtn').disabled=false;$('startTestBtn').textContent='Restart test';
+ renderCurrentTestQuestion();updateTimer();timerHandle=setInterval(()=>{remainingSeconds--;updateTimer();if(remainingSeconds<=0){stopTimer();finishTest(true);}},1000);
+}
+$('startTestBtn').addEventListener('click',startTest);
+$('cancelTestBtn').addEventListener('click',()=>{
+ if(!activeTest)return;
+ if(confirm('Cancel this test? Your answers will not be saved.')){stopTimer();activeTest=null;$('testArea').classList.add('hidden');$('cancelTestBtn').disabled=true;$('startTestBtn').textContent='Start test';}
+});
+function shuffle(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function updateTimer(){
+ const s=Math.max(0,remainingSeconds),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+ $('timerDisplay').textContent=h>0
+  ? String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')
+  : String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+ $('timerDisplay').style.color=s<=60?'#b93838':'';
+}
+function saveCurrentResponse(){
+ if(!activeTest)return;
+ const q=activeTest.questions[currentQuestionIndex];
+ if(q.type==='mcq'){
+  const checked=document.querySelector('input[name="answerChoice"]:checked');q.response=checked?checked.value:'';
+ }else{
+  const input=$('writtenResponse');if(input)q.manualAnswer=input.value;
+ }
+}
+function renderCurrentTestQuestion(){
+ if(!activeTest)return;
+ const qs=activeTest.questions,q=qs[currentQuestionIndex];
+ $('testCounter').textContent='Question '+(currentQuestionIndex+1)+' of '+qs.length;
+ $('testProgress').style.width=((currentQuestionIndex+1)/qs.length*100)+'%';
+ $('testQuestions').innerHTML='';
+ const wrap=document.createElement('div');wrap.className='question-item';
+ const title=document.createElement('h3');title.textContent=q.question;wrap.appendChild(title);
+ const type=document.createElement('p');type.className='small muted';type.textContent=q.subject+' · '+q.type.toUpperCase()+' · '+activeTest.marksPerQuestion+' mark(s)';wrap.appendChild(type);
+ if(q.type==='mcq'){
+  q.options.forEach((o,i)=>{
+   const label=document.createElement('label');label.className='option-line';
+   const input=document.createElement('input');input.type='radio';input.name='answerChoice';input.value=String(i);input.checked=String(q.response)===String(i);
+   const span=document.createElement('span');span.textContent=String.fromCharCode(65+i)+'. '+o;
+   label.append(input,span);wrap.appendChild(label);
+  });
+ }else{
+  const label=document.createElement('label');label.htmlFor='writtenResponse';label.textContent='Your answer';
+  const ta=document.createElement('textarea');ta.id='writtenResponse';ta.placeholder='Write your answer here...';ta.value=q.manualAnswer||'';
+  wrap.append(label,ta);
+  const note=document.createElement('p');note.className='small muted';note.textContent='Written answers are not automatically graded in Part 1. Review them after submitting.';wrap.appendChild(note);
+ }
+ $('testQuestions').appendChild(wrap);
+ $('prevQuestionBtn').disabled=currentQuestionIndex===0;
+ $('nextQuestionBtn').classList.toggle('hidden',currentQuestionIndex===qs.length-1);
+ $('submitTestBtn').classList.toggle('hidden',currentQuestionIndex!==qs.length-1);
+}
+$('prevQuestionBtn').addEventListener('click',()=>{saveCurrentResponse();if(currentQuestionIndex>0){currentQuestionIndex--;renderCurrentTestQuestion();}});
+$('nextQuestionBtn').addEventListener('click',()=>{saveCurrentResponse();if(currentQuestionIndex<activeTest.questions.length-1){currentQuestionIndex++;renderCurrentTestQuestion();}});
+$('submitTestBtn').addEventListener('click',()=>{saveCurrentResponse();if(confirm('Submit this test now?')){stopTimer();finishTest(false);}});
+function stopTimer(){if(timerHandle){clearInterval(timerHandle);timerHandle=null;}}
+function finishTest(autoSubmitted){
+ if(!activeTest)return;
+ saveCurrentResponse();
+ const attempt=activeTest;let correct=0,wrong=0,unanswered=0,written=0,earned=0,max=attempt.questions.length*attempt.marksPerQuestion;
+ attempt.questions.forEach(q=>{
+  if(q.type==='mcq'){
+   if(q.response===''){unanswered++;return;}
+   if(Number(q.response)===Number(q.correct)){correct++;earned+=attempt.marksPerQuestion;}
+   else{wrong++;earned-=attempt.negative;}
+  }else{written++;if((q.manualAnswer||'').trim()){} }
+ });
+ const result={id:attempt.id,date:new Date().toISOString(),subject:$('testSubject').value,practiceSet:attempt.practiceSet||'All',questionCount:attempt.questions.length,correct,wrong,unanswered,written,earned:Math.max(0,earned),max,percentage:max?Math.max(0,earned)/max*100:0,autoSubmitted,items:attempt.questions.map(q=>({sourceId:q.sourceId,subject:q.subject,type:q.type,question:q.question,options:q.options,correct:q.correct,response:q.response,manualAnswer:q.manualAnswer,answerKey:q.answerKey}))};
+ data.tests.push(result);data.sessionCount=(Number(data.sessionCount)||0)+1;persist();
+ activeTest=null;$('testArea').classList.add('hidden');$('cancelTestBtn').disabled=true;$('startTestBtn').textContent='Start test';
+ renderTestHistory();renderProgress();updateDashboard();showTestResult(result);
+}
+function showTestResult(r){
+ const div=document.createElement('div');div.className='card';div.style.marginTop='14px';
+ const h=document.createElement('h2');h.textContent='Test result';div.appendChild(h);
+ const p=document.createElement('p');p.innerHTML='<strong>'+r.earned.toFixed(2)+' / '+r.max+'</strong> marks · <strong>'+r.percentage.toFixed(1)+'%</strong>';div.appendChild(p);
+ const details=document.createElement('p');details.textContent='Correct: '+r.correct+' · Wrong: '+r.wrong+' · Unanswered: '+r.unanswered+' · Written: '+r.written+(r.autoSubmitted?' · Auto-submitted when time ended':'');div.appendChild(details);
+ const review=document.createElement('details');review.style.marginTop='12px';const summary=document.createElement('summary');summary.textContent='Review answers and answer keys';review.appendChild(summary);
+ r.items.forEach((q,i)=>{
+  const block=document.createElement('div');block.className='question-item';
+  const title=document.createElement('strong');title.textContent=(i+1)+'. '+q.question;block.appendChild(title);
+  const your=document.createElement('p');your.textContent='Your answer: '+(q.type==='mcq'?(q.response===''||q.response==null?'Not answered':(q.options||[])[Number(q.response)]):q.manualAnswer||'Not answered');block.appendChild(your);
+  const key=document.createElement('p');key.textContent='Answer key: '+(q.type==='mcq'?(q.options||[])[q.correct]||'Not set':q.answerKey||'No key provided');block.appendChild(key);if(q.type==='written'&&(q.manualAnswer||'').trim()&&(q.answerKey||'').trim()){const aiBtn=document.createElement('button');aiBtn.className='secondary';aiBtn.textContent='Check this written answer with AI';aiBtn.addEventListener('click',()=>{navigate('ai-check');$('aiQuestion').value=q.question;$('aiAnswerKey').value=q.answerKey;$('aiStudentAnswer').value=q.manualAnswer;$('aiSubject').value=q.subject||'Other';});block.appendChild(aiBtn);}review.appendChild(block);
+ });
+ div.appendChild(review);$('testResult').innerHTML='';$('testResult').appendChild(div);
+}
+function renderTestHistory(){
+ const host=$('testHistory');if(!host)return;host.innerHTML='';
+ if(!data.tests.length){host.innerHTML='<div class="empty">No tests completed yet.</div>';return;}
+ data.tests.slice().reverse().slice(0,20).forEach(t=>{
+  const d=document.createElement('div');d.className='question-item';
+  const title=document.createElement('strong');title.textContent=new Date(t.date).toLocaleString();d.appendChild(title);
+  const p=document.createElement('p');p.textContent=(t.subject||'All subjects')+' · Set '+(t.practiceSet||'All')+' · '+t.questionCount+' questions · '+Number(t.earned).toFixed(2)+'/'+t.max+' marks · '+Number(t.percentage).toFixed(1)+'%';d.appendChild(p);
+  const btn=document.createElement('button');btn.className='secondary';btn.textContent='Review';btn.addEventListener('click',()=>showTestResult(t));d.appendChild(btn);host.appendChild(d);
+ });
+}
+function updateDashboard(){
+ $('statQuestions').textContent=data.questions.length;
+ $('statTests').textContent=data.tests.length;
+ $('statStreak').textContent=data.sessionCount||0;
+ const avg=data.tests.length?data.tests.reduce((s,t)=>s+(Number(t.percentage)||0),0)/data.tests.length:null;
+ $('statAverage').textContent=avg===null?'—':avg.toFixed(0)+'%';
+ const recent=$('recentActivity');if(!recent)return;
+ if(!data.tests.length){recent.className='empty';recent.textContent='Your completed tests will appear here.';return;}
+ recent.className='';
+ recent.innerHTML='';
+ data.tests.slice().reverse().slice(0,3).forEach(t=>{
+  const p=document.createElement('p');p.textContent=new Date(t.date).toLocaleString()+' — '+(t.subject||'All subjects')+': '+Number(t.percentage).toFixed(1)+'%';recent.appendChild(p);
+ });
+}
+function renderProgress(){
+ const tests=data.tests;
+ $('progressTests').textContent=tests.length;
+ const avg=tests.length?tests.reduce((s,t)=>s+(Number(t.percentage)||0),0)/tests.length:null;
+ $('progressAvg').textContent=avg===null?'—':avg.toFixed(1)+'%';
+ $('progressBest').textContent=tests.length?Math.max(...tests.map(t=>Number(t.percentage)||0)).toFixed(1)+'%':'—';
+ $('progressWritten').textContent=tests.reduce((s,t)=>s+(Number(t.written)||0),0);
+ const map={};
+ tests.forEach(t=>{const key=t.subject||'All subjects';if(!map[key])map[key]={count:0,total:0};map[key].count++;map[key].total+=Number(t.percentage)||0;});
+ const host=$('subjectProgress');host.innerHTML='';
+ if(!Object.keys(map).length){host.innerHTML='<div class="empty">Complete a test to see subject summaries.</div>';}else{
+  Object.entries(map).forEach(([name,v])=>{const avg=v.total/v.count;const block=document.createElement('div');block.style.margin='12px 0';const row=document.createElement('div');row.className='row';row.style.justifyContent='space-between';const n=document.createElement('strong');n.textContent=name;const pct=document.createElement('span');pct.textContent=avg.toFixed(1)+'% · '+v.count+' test(s)';row.append(n,pct);const bar=document.createElement('div');bar.className='progress';bar.style.marginTop='5px';const fill=document.createElement('div');fill.style.width=Math.max(0,Math.min(100,avg))+'%';bar.appendChild(fill);block.append(row,bar);host.appendChild(block);});
+ }
+ const hist=$('progressHistory');hist.innerHTML='';
+ if(!tests.length){hist.innerHTML='<div class="empty">No results yet.</div>';return;}
+ tests.slice().reverse().slice(0,10).forEach(t=>{const p=document.createElement('p');p.textContent=new Date(t.date).toLocaleString()+' · '+(t.subject||'All subjects')+' · '+Number(t.percentage).toFixed(1)+'%';hist.appendChild(p);});
+}
+
+function exportData(){
+ const payload={app:'EduRise by KUZRAT',version:1,exportedAt:new Date().toISOString(),data};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='EduRise-KUZRAT-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);setStatus('backupStatus','Backup download started.');
+}
+$('exportBtn').addEventListener('click',exportData);
+$('importBtn').addEventListener('click',()=>{
+ const file=$('restoreFile').files[0];if(!file){alert('Please choose a JSON backup file first.');return;}
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const parsed=JSON.parse(reader.result);const incoming=parsed.data||parsed;
+   if(!incoming||!Array.isArray(incoming.questions)||!Array.isArray(incoming.tests)||typeof incoming.profile!=='object')throw new Error('This file does not look like an EduRise backup.');
+   if(!confirm('Restore this backup and replace current app data?'))return;
+   data=Object.assign(clone(DEFAULT_DATA),incoming);
+   data.profile=Object.assign({},DEFAULT_DATA.profile,incoming.profile||{});
+   data.settings=Object.assign({},DEFAULT_DATA.settings,incoming.settings||{});
+   data.questions=Array.isArray(incoming.questions)?incoming.questions:[];
+   data.tests=Array.isArray(incoming.tests)?incoming.tests:[];
+   persist();renderProfile();renderQuestions();renderTestHistory();renderProgress();setStatus('backupStatus','Backup restored successfully.');alert('Backup restored.');
+  }catch(err){alert('Could not restore this file: '+err.message);}
+ };
+ reader.onerror=()=>alert('Could not read the selected file.');
+ reader.readAsText(file);
+});
+$('clearAllBtn').addEventListener('click',()=>{
+ if(!confirm('Delete all EduRise data saved in this browser? This cannot be undone unless you have a backup.'))return;
+ localStorage.removeItem(STORAGE_KEY);data=clone(DEFAULT_DATA);persist();renderProfile();renderQuestions();renderTestHistory();renderProgress();setStatus('backupStatus','All local app data deleted.');
+});
+
+function resizeCanvas(){
+ const canvas=$('pad');if(!canvas)return;
+ const rect=canvas.getBoundingClientRect();if(!rect.width)return;
+ let snapshot=null;try{snapshot=canvas.toDataURL();}catch(e){}
+ const ratio=window.devicePixelRatio||1;
+ canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(270*ratio);
+ padWidth=rect.width;padHeight=270;
+ padCtx=canvas.getContext('2d');padCtx.scale(ratio,ratio);padCtx.lineCap='round';padCtx.lineJoin='round';
+ if(snapshot){const img=new Image();img.onload=()=>{padCtx.drawImage(img,0,0,padWidth,padHeight);};img.src=snapshot;}
+}
+function pointerPoint(e){
+ const rect=$('pad').getBoundingClientRect();return{x:e.clientX-rect.left,y:e.clientY-rect.top};
+}
+function redrawPad(){
+ if(!padCtx)return;
+ padCtx.clearRect(0,0,padWidth,padHeight);padCtx.fillStyle='#fff';padCtx.fillRect(0,0,padWidth,padHeight);
+ padStrokes.forEach(stroke=>drawStroke(stroke));
+ if(currentStroke)drawStroke(currentStroke);
+}
+function drawStroke(stroke){
+ if(!stroke.points.length)return;
+ padCtx.strokeStyle=stroke.color;padCtx.lineWidth=stroke.size;padCtx.beginPath();padCtx.moveTo(stroke.points[0].x,stroke.points[0].y);
+ if(stroke.points.length===1){padCtx.lineTo(stroke.points[0].x+.1,stroke.points[0].y+.1);}else{for(let i=1;i<stroke.points.length;i++)padCtx.lineTo(stroke.points[i].x,stroke.points[i].y);}
+ padCtx.stroke();
+}
+const canvas=$('pad');
+canvas.addEventListener('pointerdown',e=>{e.preventDefault();canvas.setPointerCapture(e.pointerId);const p=pointerPoint(e);currentStroke={color:$('penColor').value,size:Number($('penSize').value),points:[p]};redrawPad();});
+canvas.addEventListener('pointermove',e=>{if(!currentStroke)return;e.preventDefault();currentStroke.points.push(pointerPoint(e));redrawPad();});
+function endStroke(){if(currentStroke){padStrokes.push(currentStroke);currentStroke=null;redrawPad();}}
+canvas.addEventListener('pointerup',endStroke);canvas.addEventListener('pointercancel',endStroke);
+$('clearPadBtn').addEventListener('click',()=>{if(confirm('Clear the writing pad?')){padStrokes=[];currentStroke=null;redrawPad();setStatus('padStatus','Pad cleared.');}});
+$('undoPadBtn').addEventListener('click',()=>{padStrokes.pop();redrawPad();});
+$('savePadBtn').addEventListener('click',()=>{
+ const a=document.createElement('a');a.download='EduRise-writing-'+Date.now()+'.png';a.href=canvas.toDataURL('image/png');a.click();setStatus('padStatus','Drawing download started.');
+});
+window.addEventListener('resize',()=>{const old=padStrokes.slice();resizeCanvas();padStrokes=old;redrawPad();});
+
+$('saveSettingsBtn').addEventListener('click',()=>{
+ data.settings.appearance=$('appearance').value;data.settings.confirmDelete=$('confirmDelete').value;applyAppearance();persist();alert('Settings saved.');
+});
+$('showPrivacyBtn').addEventListener('click',()=>$('privacyInfo').classList.toggle('hidden'));
+function applyAppearance(){
+ const dark=data.settings.appearance==='dark';
+ document.body.style.background=dark?'#101827':'var(--bg)';
+ document.body.style.color=dark?'#edf2f8':'var(--ink)';
+ document.querySelectorAll('.card').forEach(c=>{c.style.background=dark?'#1b2638':'';c.style.borderColor=dark?'#344258':'';});
+ document.querySelectorAll('input,select,textarea').forEach(el=>{el.style.background=dark?'#101827':'';el.style.color=dark?'#edf2f8':'';el.style.borderColor=dark?'#46556b':'';});
+}
+
+// Part 2: photo OCR and PDF import helpers.
+let loadedPdf=null;
+let ocrBusy=false;
+function getOcrWorkerLanguage(){return $('ocrLanguage').value||'eng+hin';}
+async function performOcr(source,language,statusId){
+ if(!window.Tesseract||!window.Tesseract.createWorker)throw new Error('OCR library did not load. Check your internet connection and reopen the app.');
+ const worker=await Tesseract.createWorker(language,1,{logger:m=>{
+  if(m.status){const pct=typeof m.progress==='number'?' '+Math.round(m.progress*100)+'%':'';setStatus(statusId,m.status+pct+'…');}
+ }});
+ try{const result=await worker.recognize(source);return result.data.text||'';}finally{await worker.terminate();}
+}
+function copyTextFrom(id){const value=$(id).value;if(!value.trim()){alert('There is no text to copy yet.');return;}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(value).then(()=>alert('Text copied.')).catch(()=>fallbackCopy(value));}else fallbackCopy(value);}
+function fallbackCopy(value){const el=document.createElement('textarea');el.value=value;document.body.appendChild(el);el.select();try{document.execCommand('copy');alert('Text copied.');}catch(e){alert('Copy was not available. Please select and copy the text manually.');}el.remove();}
+function sendExtractedTextToQuestion(sourceId){const text=$(sourceId).value.trim();if(!text){alert('Please extract some text first.');return;}navigate('bank');$('questionText').value=text.slice(0,5000);$('answerText').value='';setStatus('backupStatus','');alert('Text placed in the Question field. Review it and save the question.');}
+$('runOcrBtn').addEventListener('click',async()=>{
+ const file=$('ocrImage').files[0];if(!file){alert('Please choose a photo first.');return;}if(ocrBusy)return;
+ ocrBusy=true;$('runOcrBtn').disabled=true;setStatus('ocrStatus','Preparing OCR…');
+ try{
+  let source=file;
+  if($('ocrMode').value==='document'){
+   const bitmap=await createImageBitmap(file);const canvas=document.createElement('canvas');const scale=Math.min(2,2200/Math.max(bitmap.width,bitmap.height));canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);const ctx=canvas.getContext('2d');ctx.filter='grayscale(1) contrast(1.35)';ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);source=canvas;
+  }
+  const text=await performOcr(source,getOcrWorkerLanguage(),'ocrStatus');$('ocrOutput').value=text;setStatus('ocrStatus','Photo reading finished. Check the result for mistakes.');
+ }catch(e){setStatus('ocrStatus','OCR failed: '+e.message);alert('Could not read this photo. '+e.message);}finally{ocrBusy=false;$('runOcrBtn').disabled=false;}
+});
+$('clearOcrBtn').addEventListener('click',()=>{$('ocrImage').value='';$('ocrOutput').value='';setStatus('ocrStatus','Cleared.');});
+$('copyOcrBtn').addEventListener('click',()=>copyTextFrom('ocrOutput'));
+$('useOcrQuestionBtn').addEventListener('click',()=>sendExtractedTextToQuestion('ocrOutput'));
+$('pdfFile').addEventListener('change',()=>{loadedPdf=null;const f=$('pdfFile').files[0];setStatus('pdfStatus',f?'Selected: '+f.name+' ('+Math.max(1,Math.round(f.size/1024))+' KB).':'No PDF selected.');$('pdfOutput').value='';});
+async function loadPdfFile(){
+ const file=$('pdfFile').files[0];if(!file)throw new Error('Choose a PDF file first.');
+ if(!window.pdfjsLib)throw new Error('PDF.js library did not load. Check your internet connection and reopen the app.');
+ if(!loadedPdf){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';const bytes=await file.arrayBuffer();loadedPdf=await pdfjsLib.getDocument({data:bytes}).promise;}
+ return loadedPdf;
+}
+$('extractPdfBtn').addEventListener('click',async()=>{
+ $('extractPdfBtn').disabled=true;setStatus('pdfStatus','Opening PDF…');$('pdfOutput').value='';
+ try{
+  const pdf=await loadPdfFile();let output='';
+  for(let i=1;i<=pdf.numPages;i++){
+   setStatus('pdfStatus','Extracting page '+i+' of '+pdf.numPages+'…');const page=await pdf.getPage(i);const content=await page.getTextContent();const line=content.items.map(x=>x.str).join(' ').replace(/[ \t]+/g,' ').trim();
+   output+='--- Page '+i+' ---\n'+(line||'[No embedded text found on this page; try OCR scanned page.]')+'\n\n';$('pdfOutput').value=output;
+  }
+  setStatus('pdfStatus','Finished extracting '+pdf.numPages+' page(s). If a page has no text, use OCR scanned page for that page.');
+ }catch(e){setStatus('pdfStatus','PDF extraction failed: '+e.message);alert('Could not extract this PDF. '+e.message);}finally{$('extractPdfBtn').disabled=false;}
+});
+$('ocrPdfPageBtn').addEventListener('click',async()=>{
+ $('ocrPdfPageBtn').disabled=true;setStatus('pdfStatus','Rendering PDF page for OCR…');
+ try{
+  const pdf=await loadPdfFile();const pageNo=Math.max(1,Math.floor(Number($('pdfPageNumber').value)||1));if(pageNo>pdf.numPages)throw new Error('Page number is larger than the PDF page count ('+pdf.numPages+').');
+  const page=await pdf.getPage(pageNo);const scale=Number($('pdfScale').value)||2;const viewport=page.getViewport({scale});const canvas=$('pdfCanvas');const ctx=canvas.getContext('2d');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);canvas.classList.remove('hidden');await page.render({canvasContext:ctx,viewport}).promise;
+  setStatus('pdfStatus','Reading scanned page '+pageNo+' with OCR…');const text=await performOcr(canvas,getOcrWorkerLanguage(),'pdfStatus');const previous=$('pdfOutput').value.trim();$('pdfOutput').value=(previous?previous+'\n\n':'')+'--- OCR Page '+pageNo+' ---\n'+text;setStatus('pdfStatus','OCR finished for page '+pageNo+'. Review the recognized text.');
+ }catch(e){setStatus('pdfStatus','Scanned-page OCR failed: '+e.message);alert('Could not OCR this PDF page. '+e.message);}finally{$('ocrPdfPageBtn').disabled=false;}
+});
+$('copyPdfBtn').addEventListener('click',()=>copyTextFrom('pdfOutput'));
+$('usePdfQuestionBtn').addEventListener('click',()=>sendExtractedTextToQuestion('pdfOutput'));
+
+// Part 3: optional AI grading through a user-configured backend.
+function renderAiEndpoint(){ let shared=''; try{shared=localStorage.getItem('edurise_ai_backend_endpoint')||'';}catch(e){} $('aiEndpointUrl').value=data.settings.aiEndpointUrl||shared||''; }
+$('saveAiEndpointBtn').addEventListener('click',()=>{
+ const value=$('aiEndpointUrl').value.trim();
+ if(value){try{const u=new URL(value);if(!['https:','http:'].includes(u.protocol))throw new Error();}catch(e){alert('Please enter a valid http:// or https:// endpoint URL.');return;}}
+ data.settings.aiEndpointUrl=value;try{if(value)localStorage.setItem('edurise_ai_backend_endpoint',value);else localStorage.removeItem('edurise_ai_backend_endpoint');}catch(e){}persist();setStatus('aiEndpointStatus',value?'Endpoint saved on this device.':'Endpoint cleared.');
+});
+$('clearAiCheckBtn').addEventListener('click',()=>{['aiQuestion','aiAnswerKey','aiStudentAnswer'].forEach(id=>$(id).value='');$('aiMaxMarks').value='5';$('aiCheckResult').innerHTML='';setStatus('aiCheckStatus','Cleared.');});
+$('runAiCheckBtn').addEventListener('click',async()=>{
+ const question=$('aiQuestion').value.trim(),answerKey=$('aiAnswerKey').value.trim(),studentAnswer=$('aiStudentAnswer').value.trim();
+ let sharedEndpoint='';try{sharedEndpoint=localStorage.getItem('edurise_ai_backend_endpoint')||'';}catch(e){}const endpoint=(data.settings.aiEndpointUrl||sharedEndpoint||'').trim();
+ if(!question||!answerKey||!studentAnswer){alert('Please enter the question, answer key, and student answer.');return;}
+ if(!endpoint){setStatus('aiCheckStatus','No AI backend endpoint saved. Add one below first.');alert('AI checking ke liye Settings card mein compatible backend URL save karein.');return;}
+ const btn=$('runAiCheckBtn');btn.disabled=true;$('aiCheckResult').innerHTML='';setStatus('aiCheckStatus','Checking answer…');
+ try{
+  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question,answerKey,studentAnswer,model_answer:answerKey,student_answer:studentAnswer,maxMarks:Math.max(1,Number($('aiMaxMarks').value)||5),max_marks:Math.max(1,Number($('aiMaxMarks').value)||5),subject:$('aiSubject').value,language:$('aiLanguage').value})});
+  if(!response.ok)throw new Error('Server returned HTTP '+response.status+'.');
+  const result=await response.json();
+  if(typeof result.marks!=='number'||typeof result.feedback!=='string')throw new Error('Response must contain numeric marks and text feedback.');
+  const max=Math.max(1,Number($('aiMaxMarks').value)||5);const box=document.createElement('div');box.className='question-item';
+  const score=document.createElement('h3');score.textContent='Marks: '+Math.max(0,Math.min(max,result.marks))+' / '+max;box.appendChild(score);
+  const fb=document.createElement('p');fb.textContent='Feedback: '+result.feedback;box.appendChild(fb);
+  if(Array.isArray(result.mistakes)&&result.mistakes.length){const h=document.createElement('strong');h.textContent='Mistakes / missing points';box.appendChild(h);const ul=document.createElement('ul');result.mistakes.forEach(m=>{const li=document.createElement('li');li.textContent=String(m);ul.appendChild(li);});box.appendChild(ul);}
+  if(result.suggestedAnswer||result.suggested_answer||Array.isArray(result.suggestions)&&result.suggestions.length){const d=document.createElement('details');const sum=document.createElement('summary');sum.textContent='Suggestions / improved answer';const p=document.createElement('p');p.textContent=String(result.suggestedAnswer||result.suggested_answer||result.suggestions.join('\n'));d.append(sum,p);box.appendChild(d);}
+  $('aiCheckResult').appendChild(box);setStatus('aiCheckStatus','Checking complete. AI marks may be imperfect; compare with your official marking scheme.');
+ }catch(e){setStatus('aiCheckStatus','Could not check answer: '+e.message);alert('AI checking failed. Check the endpoint, internet connection, server response and CORS settings. '+e.message);}finally{btn.disabled=false;}
+});
+
+// Part 4: account and cloud-sync client. A compatible server is required.
+const ACCOUNT_KEY='edurise_kuzrat_account_v1';
+let accountSession={baseUrl:'',email:'',name:'',token:''};
+function loadAccount(){try{const x=JSON.parse(localStorage.getItem(ACCOUNT_KEY)||'{}');accountSession=Object.assign({baseUrl:'',email:'',name:'',token:''},x);}catch(e){}}
+function saveAccount(){try{localStorage.setItem(ACCOUNT_KEY,JSON.stringify(accountSession));}catch(e){}}
+function accountBase(){return String(accountSession.baseUrl||'').trim().replace(/\/+$/,'');}
+function renderAccount(){if($('accountApiBase'))$('accountApiBase').value=accountSession.baseUrl||'';if($('accountStatus'))$('accountStatus').textContent=accountSession.token?'Signed in as '+(accountSession.email||'account')+'.':'Not signed in. Your data stays on this device until you connect a server.';}
+async function accountRequest(path,options={}){const base=accountBase();if(!base)throw new Error('First enter and save your backend base URL.');const headers=Object.assign({'Content-Type':'application/json'},options.headers||{});if(accountSession.token)headers.Authorization='Bearer '+accountSession.token;const r=await fetch(base+path,Object.assign({},options,{headers}));let body={};try{body=await r.json();}catch(e){}if(!r.ok)throw new Error(body.message||body.error||('Server returned HTTP '+r.status));return body;}
+$('saveAccountApiBtn').addEventListener('click',()=>{const v=$('accountApiBase').value.trim();if(v){try{const u=new URL(v);if(!['https:','http:'].includes(u.protocol))throw new Error();if(u.protocol==='http:'&&u.hostname!=='localhost'&&u.hostname!=='127.0.0.1')alert('Warning: HTTP is not encrypted. Use HTTPS for real accounts.');}catch(e){alert('Please enter a valid http:// or https:// backend URL.');return;}}accountSession.baseUrl=v;saveAccount();setStatus('accountApiStatus',v?'Backend URL saved on this device.':'Backend URL cleared.');});
+$('registerBtn').addEventListener('click',async()=>{const name=$('registerName').value.trim(),email=$('registerEmail').value.trim(),password=$('registerPassword').value;if(!name||!email||password.length<8){alert('Name, valid email and a password of at least 8 characters are required.');return;}const b=$('registerBtn');b.disabled=true;setStatus('accountApiStatus','Creating account…');try{const r=await accountRequest('/auth/register',{method:'POST',body:JSON.stringify({name,email,password})});if(!r.token)throw new Error('Server must return a token after registration.');accountSession.email=email;accountSession.name=name;accountSession.token=r.token;saveAccount();renderAccount();setStatus('accountApiStatus','Account created and signed in.');if(r.data&&typeof r.data==='object'){applyRemoteData(r.data);setStatus('syncStatus','Server data loaded.');}}catch(e){setStatus('accountApiStatus','Registration failed: '+e.message);alert('Registration did not complete. Check your backend/API. '+e.message);}finally{b.disabled=false;}});
+$('loginBtn').addEventListener('click',async()=>{const email=$('loginEmail').value.trim(),password=$('loginPassword').value;if(!email||!password){alert('Enter your email and EduRise password.');return;}const b=$('loginBtn');b.disabled=true;setStatus('accountApiStatus','Signing in…');try{const r=await accountRequest('/auth/login',{method:'POST',body:JSON.stringify({email,password})});if(!r.token)throw new Error('Server must return a token.');accountSession.email=email;accountSession.name=r.name||'';accountSession.token=r.token;saveAccount();renderAccount();setStatus('accountApiStatus','Signed in successfully.');if(r.data&&typeof r.data==='object'){applyRemoteData(r.data);}else{try{const cloud=await accountRequest('/data',{method:'GET'});if(cloud&&((cloud.data&&Array.isArray(cloud.data.questions))||Array.isArray(cloud.questions)))applyRemoteData(cloud);else setStatus('syncStatus','Signed in. No valid cloud data was returned; use Sync now to upload this device data.');}catch(loadErr){setStatus('syncStatus','Signed in. Cloud data could not be loaded automatically; use Sync now to upload this device data.');}}}catch(e){setStatus('accountApiStatus','Sign-in failed: '+e.message);alert('Sign-in did not complete. Check your backend/API. '+e.message);}finally{b.disabled=false;}});
+function applyRemoteData(remote){const incoming=remote.data&&typeof remote.data==='object'?remote.data:remote;if(!Array.isArray(incoming.questions)||!Array.isArray(incoming.tests)||!incoming.profile||typeof incoming.profile!=='object')throw new Error('Server data format is not a valid EduRise data object.');if(!confirm('Load cloud data? This replaces the data currently stored on this device. Export a backup first if needed.'))return;data=Object.assign(clone(DEFAULT_DATA),incoming);data.profile=Object.assign({},DEFAULT_DATA.profile,incoming.profile||{});data.settings=Object.assign({},DEFAULT_DATA.settings,incoming.settings||{});data.questions=Array.isArray(incoming.questions)?incoming.questions:[];data.tests=Array.isArray(incoming.tests)?incoming.tests:[];data.sessionCount=Number(incoming.sessionCount)||0;persist();renderProfile();renderQuestions();renderTestHistory();renderProgress();refreshSetDropdowns();updateDashboard();}
+async function syncNow(silent=false){if(!accountSession.token){if(!silent)alert('Sign in to your EduRise account first.');return;}const b=$('syncNowBtn');b.disabled=true;setStatus('syncStatus','Syncing…');try{await accountRequest('/data',{method:'PUT',body:JSON.stringify(data)});setStatus('syncStatus','Cloud backup uploaded successfully at '+new Date().toLocaleString()+'.');}catch(e){setStatus('syncStatus','Sync failed: '+e.message);if(!silent)alert('Cloud sync failed. Check your server, internet, CORS and API format. '+e.message);}finally{b.disabled=false;}}
+$('syncNowBtn').addEventListener('click',()=>syncNow(false));
+$('signOutBtn').addEventListener('click',()=>{accountSession.token='';accountSession.email='';accountSession.name='';saveAccount();renderAccount();setStatus('syncStatus','Signed out. Local study data has not been deleted.');});
+
+function init(){
+ load();loadAccount();renderAccount();renderProfile();toggleQuestionType();refreshSetDropdowns();renderQuestions();renderTestHistory();renderProgress();updateDashboard();renderAiEndpoint();
+ $('appearance').value=data.settings.appearance||'light';$('confirmDelete').value=data.settings.confirmDelete||'yes';applyAppearance();
+ resizeCanvas();redrawPad();
+}
+init();
+})();
+</script>
+
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const exam=$('hubExam'), subject=$('hubSubject');
+ if(!exam||!subject)return;
+ const subjectMap={School:['Science','Mathematics','English','History','Geography','Economics','Other'],JEE:['Physics','Chemistry','Mathematics'],NEET:['Physics','Chemistry','Biology'],UPSC:['History','Geography','Polity','Economics','General Knowledge','English','Other'],CUET:['English','History','Geography','Economics','General Knowledge','Other'],Other:['English','Mathematics','Science','Reasoning','General Knowledge','Other']};
+ function updateSubjects(){const list=subjectMap[exam.value]||subjectMap.Other;const old=subject.value;subject.innerHTML='';list.forEach(x=>{const o=document.createElement('option');o.textContent=x;subject.appendChild(o)});if(list.includes(old))subject.value=old;}
+ exam.addEventListener('change',updateSubjects);
+ document.querySelectorAll('.exam-choice').forEach(b=>b.addEventListener('click',()=>{exam.value=b.dataset.exam;updateSubjects();document.querySelectorAll('.exam-choice').forEach(x=>x.classList.toggle('active',x===b));$('hubStatus').textContent='Selected '+exam.value+'. Now choose a subject, topic and set number.';}));
+ $('hubGoBank').addEventListener('click',()=>{const board=$('qBoard'), cls=$('qClass'), sub=$('qSubject'), set=$('qSetNumber');if(board){const v=exam.value==='School'?'Any':exam.value;if([...board.options].some(o=>o.value===v||o.textContent===v))board.value=v;}if(cls&&exam.value!=='School'&&[...cls.options].some(o=>o.value===exam.value||o.textContent===exam.value))cls.value=exam.value;if(sub&&[...sub.options].some(o=>o.value===subject.value||o.textContent===subject.value))sub.value=subject.value;if(set)set.value=Math.max(1,Number($('hubSet').value)||1);if($('qTopic'))$('qTopic').value=$('hubTopic').value;document.querySelector('#mainNav button[data-page="bank"]').click();$('hubStatus').textContent='Question Bank opened. Confirm the fields, then save a question.';});
+ $('hubGoTest').addEventListener('click',()=>{const set=$('testSetNumber');if(set)set.value=String(Math.max(1,Number($('hubSet').value)||1));document.querySelector('#mainNav button[data-page="test"]').click();});
+ updateSubjects();
+})();
+</script>
+
+
+<!-- EduRise Part 6–9: AI connection setup, deployment checklist, safety and testing -->
+<section id="edurise-ai-backend" class="panel" style="margin-top:18px">
+  <h2>🤖 AI Answer Checker — Backend Setup</h2>
+  <p class="muted">यह setup पुराने EduRise फीचर्स को हटाए बिना जोड़ा गया है। असली AI checking के लिए backend deploy करना और endpoint URL भरना ज़रूरी है।</p>
+
+  <div class="card" style="padding:14px;margin:12px 0">
+    <h3>Part 6 — Backend Endpoint</h3>
+    <label for="er-endpoint">AI Backend Endpoint URL (HTTPS)</label>
+    <input id="er-endpoint" type="url" placeholder="https://your-deployed-backend.example/grade" style="width:100%;box-sizing:border-box">
+    <p class="muted" style="font-size:13px">ऊपर वाला URL केवल placeholder format है। इसे असली deployed URL से बदलना होगा।</p>
+    <button id="er-save-endpoint" type="button">Save Endpoint on This Device</button>
+  </div>
+
+  <div class="card" style="padding:14px;margin:12px 0">
+    <h3>AI से उत्तर जाँचें</h3>
+    <label for="er-question">Question</label>
+    <textarea id="er-question" rows="3" placeholder="प्रश्न लिखें" style="width:100%;box-sizing:border-box"></textarea>
+    <label for="er-model-answer">Model Answer / Answer Key</label>
+    <textarea id="er-model-answer" rows="3" placeholder="सही उत्तर या model answer लिखें" style="width:100%;box-sizing:border-box"></textarea>
+    <label for="er-student-answer">Student Answer</label>
+    <textarea id="er-student-answer" rows="5" placeholder="विद्यार्थी का उत्तर लिखें" style="width:100%;box-sizing:border-box"></textarea>
+    <label for="er-max-marks">Maximum Marks</label>
+    <input id="er-max-marks" type="number" min="1" max="100" value="5" style="width:100%;box-sizing:border-box">
+    <button id="er-check-answer" type="button" style="margin-top:12px">Check Answer with AI</button>
+    <div id="er-status" role="status" aria-live="polite" style="margin-top:12px;padding:12px;border-radius:10px;background:var(--card, #f3f4f6);white-space:pre-wrap">Status: पहले deployed backend URL जोड़ें।</div>
+    <div id="er-result" style="display:none;margin-top:12px;padding:12px;border:1px solid #aaa;border-radius:10px;white-space:pre-wrap"></div>
+  </div>
+
+  <div class="card" style="padding:14px;margin:12px 0">
+    <h3>Part 7 — Backend Hosting Checklist</h3>
+    <ol>
+      <li>एक hosting service पर account बनाकर backend project deploy करें।</li>
+      <li>Backend में AI provider की API key को server-side secret/environment variable के रूप में रखें।</li>
+      <li>Backend में <code>POST /grade</code> endpoint बनाएं, जो JSON में <code>question</code>, <code>model_answer</code>, <code>student_answer</code>, और <code>max_marks</code> स्वीकार करे।</li>
+      <li>Deploy होने पर hosting service से मिली HTTPS URL यहाँ ऊपर डालें।</li>
+      <li>Backend के CORS settings में अपनी app/hosting origin को अनुमति दें।</li>
+    </ol>
+    <p><strong>नोट:</strong> यह HTML किसी hosting service पर अपने-आप deploy नहीं कर सकता। इसलिए इस समय कोई वास्तविक endpoint URL मौजूद नहीं है।</p>
+  </div>
+
+  <div class="card" style="padding:14px;margin:12px 0">
+    <h3>Part 8 — AI Checking Result</h3>
+    <p>यह section backend का response दिखाएगा। Backend को अंक, feedback, गलतियाँ और सुधार के सुझाव लौटाने के लिए बनाया जाना चाहिए। अभी AI result तभी आएगा जब सही endpoint और compatible backend मौजूद हों।</p>
+    <p class="muted">यह tool खुद से AI model नहीं चलाता और न ही model answer की AI जाँच offline करता है।</p>
+  </div>
+
+  <div class="card" style="padding:14px;margin:12px 0">
+    <h3>Part 9 — Security & Final Test</h3>
+    <ul>
+      <li>AI provider की secret API key HTML, JavaScript या public GitHub repository में कभी न रखें।</li>
+      <li>Endpoint पर HTTPS इस्तेमाल करें और backend पर rate limit/usage limits लगाएँ।</li>
+      <li>Private student answers को अनावश्यक रूप से log या share न करें।</li>
+      <li>पहले एक छोटे test answer से जाँचें; फिर Hindi और English दोनों उत्तरों को जाँचें।</li>
+      <li>यदि connection error आए, तो endpoint path, backend logs, CORS और request/response format जाँचें।</li>
+    </ul>
+    <button type="button" id="er-test-form">Test Form Fields</button>
+    <p id="er-local-test" role="status" class="muted"></p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const endpoint = $('er-endpoint');
+  const status = $('er-status');
+  const result = $('er-result');
+  if (!endpoint || !status || !result) return;
+
+  try {
+    const saved = localStorage.getItem('edurise_ai_backend_endpoint');
+    if (saved) endpoint.value = saved;
+  } catch (_) {}
+
+  function validHttpsUrl(value) {
+    try {
+      const u = new URL(value);
+      return u.protocol === 'https:' && !!u.hostname;
+    } catch (_) { return false; }
+  }
+
+  $('er-save-endpoint').addEventListener('click', function () {
+    const url = endpoint.value.trim();
+    if (!validHttpsUrl(url)) {
+      status.textContent = 'सही HTTPS URL डालें। Placeholder URL काम नहीं करेगा; पहले backend deploy करें।';
+      return;
+    }
+    try {
+      localStorage.setItem('edurise_ai_backend_endpoint', url);
+      status.textContent = 'Endpoint इस डिवाइस पर सेव हो गया। URL सेव होने का अर्थ यह नहीं कि backend चालू भी है।';
+    } catch (_) {
+      status.textContent = 'Browser storage उपलब्ध नहीं है। URL को सुरक्षित जगह लिख लें।';
+    }
+  });
+
+  $('er-check-answer').addEventListener('click', async function () {
+    const url = endpoint.value.trim();
+    const question = $('er-question').value.trim();
+    const modelAnswer = $('er-model-answer').value.trim();
+    const studentAnswer = $('er-student-answer').value.trim();
+    const maxMarks = Number($('er-max-marks').value);
+    result.style.display = 'none';
+
+    if (!validHttpsUrl(url)) {
+      status.textContent = 'पहले backend deploy करके उसका असली HTTPS endpoint URL डालें।';
+      return;
+    }
+    if (!question || !modelAnswer || !studentAnswer) {
+      status.textContent = 'Question, Model Answer और Student Answer तीनों भरें।';
+      return;
+    }
+    if (!Number.isFinite(maxMarks) || maxMarks < 1 || maxMarks > 100) {
+      status.textContent = 'Maximum Marks 1 से 100 के बीच रखें।';
+      return;
+    }
+
+    const button = $('er-check-answer');
+    button.disabled = true;
+    status.textContent = 'Backend से संपर्क किया जा रहा है…';
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question: question,
+          model_answer: modelAnswer,
+          student_answer: studentAnswer,
+          max_marks: maxMarks
+        })
+      });
+      const raw = await response.text();
+      if (!response.ok) throw new Error('HTTP ' + response.status + ': ' + raw.slice(0, 400));
+      let data;
+      try { data = JSON.parse(raw); } catch (_) { data = { response: raw }; }
+      result.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+      result.style.display = 'block';
+      status.textContent = 'Backend response प्राप्त हुआ। Result नीचे देखें।';
+    } catch (err) {
+      status.textContent = 'Connection नहीं हुई: ' + err.message +
+        '\\nसंभव कारण: URL गलत है, backend बंद है, CORS अनुमति नहीं है या backend का request format अलग है।';
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  $('er-test-form').addEventListener('click', function () {
+    const checks = [
+      ['Question', $('er-question').value.trim()],
+      ['Model Answer', $('er-model-answer').value.trim()],
+      ['Student Answer', $('er-student-answer').value.trim()]
+    ];
+    const missing = checks.filter(x => !x[1]).map(x => x[0]);
+    $('er-local-test').textContent = missing.length
+      ? 'Form test: अभी यह field भरनी है — ' + missing.join(', ') + '.'
+      : 'Form test पास: तीनों text fields भरे हैं। यह केवल form test है, AI/backend test नहीं।';
+  });
+})();
+</script>
+
+
+
+
+<section id="er-part11-audit" style="margin:24px auto;max-width:1000px;padding:18px;border:1px solid #cbd5e1;border-radius:14px;background:#fff;color:#152238">
+  <h2>🛠️ Part 11 — Feature Audit & Fixes (Consolidated Build)</h2>
+  <p>यह जाँच उपलब्ध HTML कोड के आधार पर है। इसे अलग-अलग Android फोन/ब्राउज़र पर पूरी तरह चलाकर टेस्ट करना अभी बाकी है।</p>
+  <h3>इस अपडेट में ठीक किए गए कोड के मुद्दे</h3>
+  <ul>
+    <li>Part 10 के आसपास duplicate opening <code>section</code> tag हटाया गया।</li>
+    <li>मुख्य AI checker अब <code>answerKey/studentAnswer/maxMarks</code> और backend के <code>model_answer/student_answer/max_marks</code> दोनों नाम भेजता है।</li>
+    <li>Cloudflare Worker code अब camelCase और snake_case दोनों request formats स्वीकार करता है।</li>
+    <li>AI result में <code>suggestions</code> array हो तो मुख्य checker भी उसे दिखाता है।</li>
+    <li>दोनों AI checker panels अब एक ही saved backend URL इस्तेमाल करते हैं, ताकि URL अलग-अलग जगह सेव होने से confusion न हो।</li>
+  </ul>
+  <h3>जो अभी बिना बाहरी setup के काम नहीं कर सकते</h3>
+  <ul>
+    <li><strong>AI answer checking:</strong> Cloudflare Worker deploy करना, <code>GROQ_API_KEY</code> secret सेट करना और असली HTTPS URL डालना ज़रूरी है। Free-tier limits बदल सकती हैं।</li>
+    <li><strong>Sign-in / cloud sync:</strong> HTML में client-side interface है; असली account/database के लिए अलग compatible backend चाहिए। सिर्फ AI Worker URL से sign-in या sync चालू नहीं होगा।</li>
+    <li><strong>OCR/PDF:</strong> CDN और internet चाहिए। Printed text बेहतर पढ़ सकता है; Hindi handwriting, गणित के सूत्र और धुंधली फोटो में गलती हो सकती है।</li>
+    <li><strong>Question banks:</strong> JEE/NEET/UPSC/Board के सभी official questions अपने-आप शामिल नहीं हैं। Question Bank में अपने questions import/add करने होंगे।</li>
+    <li><strong>APK:</strong> यह HTML file है, installable Android APK नहीं। APK packaging अलग से करनी होगी।</li>
+  </ul>
+  <h3>Android पर छोटा टेस्ट</h3>
+  <ol>
+    <li>फ़ाइल को Chrome या Spck preview में खोलो और Home, Question Bank, Test, Progress tabs पर टैप करो।</li>
+    <li>एक test question जोड़ो, test शुरू करके उत्तर चुनो और Submit करके देखो।</li>
+    <li>एक photo OCR और text-based PDF आज़माओ; इंटरनेट चालू रखो।</li>
+    <li>AI checker को तभी टेस्ट करो जब Worker deploy हो चुका हो और URL save हो।</li>
+    <li>कोई बटन न चले तो उस स्क्रीन का screenshot भेजना; इस फ़ाइल का हर फीचर अभी device पर independently verify नहीं हुआ है।</li>
+  </ol>
+</section>
+
+<section id="er-part10-worker" style="margin:24px auto;max-width:1000px;padding:18px;border:1px solid #64748b;border-radius:14px;background:var(--card-bg,#fff);color:var(--text-color,#111827)">
+  <h2>🧠 Part 10 — Free AI Backend Code (Cloudflare + Groq)</h2>
+  <p><strong>Important:</strong> Yeh code EduRise HTML ke andar AI ko directly deploy nahi karta. Is code ko Cloudflare Worker ke editor mein paste karke Deploy karna hoga. Groq API key ko sirf Cloudflare ke Secret <code>GROQ_API_KEY</code> mein rakhein—HTML mein kabhi nahi.</p>
+  <ol>
+    <li>Cloudflare Dashboard → <strong>Workers & Pages</strong> → apna Worker kholein.</li>
+    <li><strong>Edit code</strong> par jaakar purana demo code replace karke neeche ka poora code paste karein.</li>
+    <li><strong>Deploy</strong> dabayein. Worker ka asli URL copy karein, jo <code>https://…workers.dev</code> jaisa hoga.</li>
+    <li>EduRise mein <strong>Connect AI Checking</strong> ke URL field mein apna asli Worker URL paste karein aur Save/Test karein.</li>
+  </ol>
+  <p>Yeh backend question, model answer, student answer aur maximum marks leta hai. AI ka score sujhav hai—important exams ke liye teacher se verify karein. Free tiers par rate limits ho sakti hain. CORS abhi open hai, isliye URL public ho sakta hai; ise private/secure samajhkar share na karein.</p>
+  <button type="button" id="er-copy-worker" style="padding:10px 14px;border:0;border-radius:8px;cursor:pointer">📋 Worker Code Copy</button>
+  <span id="er-copy-worker-status" role="status" style="margin-left:8px"></span>
+  <textarea id="er-worker-code" readonly spellcheck="false" style="display:block;width:100%;min-height:420px;margin-top:12px;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #94a3b8;font:13px/1.45 monospace;white-space:pre;overflow:auto">export default {
+  async fetch(request, env) {
+    const cors = {
+      &quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;,
+      &quot;Access-Control-Allow-Methods&quot;: &quot;POST, OPTIONS&quot;,
+      &quot;Access-Control-Allow-Headers&quot;: &quot;Content-Type&quot;,
+      &quot;Content-Type&quot;: &quot;application/json; charset=utf-8&quot;
+    };
+
+    if (request.method === &quot;OPTIONS&quot;) return new Response(null, { headers: cors });
+    if (request.method !== &quot;POST&quot;) {
+      return new Response(JSON.stringify({ error: &quot;Use POST method.&quot; }), { status: 405, headers: cors });
+    }
+    if (!env.GROQ_API_KEY) {
+      return new Response(JSON.stringify({ error: &quot;Backend setup incomplete: GROQ_API_KEY secret is missing.&quot; }), { status: 500, headers: cors });
+    }
+
+    try {
+      const body = await request.json();
+      const question = String(body.question || &quot;&quot;).trim();
+      const modelAnswer = String(body.model_answer || body.answerKey || body.answer_key || &quot;&quot;).trim();
+      const studentAnswer = String(body.student_answer || body.studentAnswer || &quot;&quot;).trim();
+      const maxMarks = Number(body.max_marks || body.maxMarks || 5);
+
+      if (!question || !studentAnswer || !Number.isFinite(maxMarks) || maxMarks &lt;= 0) {
+        return new Response(JSON.stringify({ error: &quot;Question, student answer and a positive max_marks are required.&quot; }), { status: 400, headers: cors });
+      }
+
+      const prompt = [
+        &quot;You are a fair educational answer checker. Grade only the student&#x27;s answer against the question and supplied model answer.&quot;,
+        &quot;Award marks from 0 to max_marks. Be fair if wording differs but meaning is correct. Do not invent facts.&quot;,
+        &quot;Return ONLY valid JSON with keys: marks (number), max_marks (number), feedback (short string), mistakes (array of strings), suggestions (array of strings).&quot;,
+        &quot;Use the same language as the student&#x27;s answer where practical.&quot;,
+        &quot;Question: &quot; + question,
+        &quot;Model answer (may be empty): &quot; + (modelAnswer || &quot;Not provided&quot;),
+        &quot;Student answer: &quot; + studentAnswer,
+        &quot;Maximum marks: &quot; + maxMarks
+      ].join(&quot;\n\n&quot;);
+
+      const apiResponse = await fetch(&quot;https://api.groq.com/openai/v1/chat/completions&quot;, {
+        method: &quot;POST&quot;,
+        headers: {
+          &quot;Authorization&quot;: &quot;Bearer &quot; + env.GROQ_API_KEY,
+          &quot;Content-Type&quot;: &quot;application/json&quot;
+        },
+        body: JSON.stringify({
+          model: &quot;llama-3.3-70b-versatile&quot;,
+          messages: [
+            { role: &quot;system&quot;, content: &quot;You are a careful exam evaluator. Output valid JSON only.&quot; },
+            { role: &quot;user&quot;, content: prompt }
+          ],
+          temperature: 0.2,
+          max_tokens: 700,
+          response_format: { type: &quot;json_object&quot; }
+        })
+      });
+
+      const raw = await apiResponse.text();
+      if (!apiResponse.ok) {
+        return new Response(JSON.stringify({ error: &quot;AI provider request failed. Check Groq model, API key and usage limits.&quot;, provider_status: apiResponse.status }), { status: 502, headers: cors });
+      }
+
+      const completion = JSON.parse(raw);
+      const content = completion.choices?.[0]?.message?.content || &quot;{}&quot;;
+      let result;
+      try { result = JSON.parse(content); }
+      catch { result = { feedback: content, marks: null, max_marks: maxMarks, mistakes: [], suggestions: [] }; }
+
+      if (typeof result.marks === &quot;number&quot;) {
+        result.marks = Math.max(0, Math.min(maxMarks, result.marks));
+      }
+      result.max_marks = maxMarks;
+      return new Response(JSON.stringify(result), { headers: cors });
+    } catch (error) {
+      return new Response(JSON.stringify({ error: &quot;Request could not be processed. Check that you sent valid JSON fields.&quot; }), { status: 400, headers: cors });
+    }
+  }
+};</textarea>
+</section>
+<script>
+(function(){
+  const button = document.getElementById('er-copy-worker');
+  const area = document.getElementById('er-worker-code');
+  const status = document.getElementById('er-copy-worker-status');
+  if (!button || !area || !status) return;
+  button.addEventListener('click', async function(){
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(area.value);
+      } else {
+        area.focus(); area.select();
+        const copied = document.execCommand('copy');
+        if (!copied) throw new Error('copy unavailable');
+      }
+      status.textContent = 'Code copy ho gaya. Cloudflare Worker editor mein paste karein.';
+    } catch (e) {
+      area.focus(); area.select();
+      status.textContent = 'Code select kar diya hai—Copy dabayein ya long-press karke Copy karein.';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
